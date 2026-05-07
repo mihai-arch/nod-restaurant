@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meniu · NOD Restaurant · Constanța</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --cream: #F5F0E8;
+  --navy: #1A2744;
+  --navy2: #0D1525;
+  --gold: #C9A96E;
+  --gold2: #E8C99A;
+}
+body { background:var(--cream); font-family:'Jost',sans-serif; cursor:none; }
+
+#cursor { position:fixed; width:10px; height:10px; background:var(--gold); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); mix-blend-mode:multiply; }
+
+/* HEADER */
+.menu-header {
+  background:var(--navy2); padding:48px 60px 36px; text-align:center;
+  position:relative; overflow:hidden;
+}
+.menu-header::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold));
+}
+.header-back { position:absolute; top:32px; left:48px; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.4); text-decoration:none; transition:color 0.3s; cursor:none; }
+.header-back:hover { color:var(--gold); }
+.header-logo { font-family:'Cormorant Garamond',serif; font-size:64px; letter-spacing:16px; color:rgba(255,255,255,0.06); font-weight:300; position:absolute; top:20px; left:50%; transform:translateX(-50%); white-space:nowrap; }
+.header-eyebrow { font-size:9px; letter-spacing:5px; text-transform:uppercase; color:var(--gold); margin-bottom:12px; position:relative; }
+.header-title { font-family:'Cormorant Garamond',serif; font-size:48px; font-weight:300; color:white; position:relative; letter-spacing:4px; }
+.header-title em { font-style:italic; color:var(--gold); }
+.header-note { font-size:11px; color:rgba(255,255,255,0.3); margin-top:12px; position:relative; letter-spacing:1px; }
+
+/* NAV TABS */
+.menu-nav { background:var(--navy); position:sticky; top:0; z-index:50; overflow-x:auto; border-bottom:1px solid rgba(201,169,110,0.12); }
+.menu-nav-inner { display:flex; max-width:1200px; margin:0 auto; padding:0 48px; }
+.menu-tab { padding:18px 24px; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.45); cursor:none; background:none; border:none; font-family:'Jost'; transition:color 0.3s; white-space:nowrap; position:relative; }
+.menu-tab.active { color:var(--gold); }
+.menu-tab.active::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:var(--gold); }
+.menu-tab:hover { color:rgba(255,255,255,0.8); }
+
+/* CONTENT */
+.menu-content { max-width:1200px; margin:0 auto; padding:0 48px 80px; }
+.menu-section { display:none; padding-top:60px; }
+.menu-section.active { display:block; }
+.section-header { margin-bottom:48px; padding-bottom:24px; border-bottom:1px solid rgba(26,39,68,0.12); }
+.section-label { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+.section-title { font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:300; color:var(--navy); }
+.section-title em { font-style:italic; }
+.section-note { font-size:12px; color:rgba(26,39,68,0.4); margin-top:8px; }
+
+/* ITEMS GRID */
+.items-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+.menu-item { padding:24px 0; border-bottom:1px solid rgba(26,39,68,0.07); display:flex; justify-content:space-between; align-items:start; transition:padding-left 0.3s; }
+.menu-item:hover { padding-left:10px; }
+.mi-left { flex:1; padding-right:24px; }
+.mi-name { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; color:var(--navy); margin-bottom:5px; }
+.mi-weight { font-size:10px; color:var(--gold); letter-spacing:1px; margin-bottom:5px; }
+.mi-desc { font-size:11px; color:rgba(26,39,68,0.5); line-height:1.7; font-weight:300; }
+.mi-price { font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--gold); font-weight:300; white-space:nowrap; flex-shrink:0; }
+
+/* DRINKS SPECIAL LAYOUT */
+.drinks-grid { display:grid; grid-template-columns:1fr; gap:0; }
+.drinks-grid .menu-item { padding:20px 0; }
+
+.subsection-title { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--navy); margin:44px 0 8px; padding-bottom:12px; border-bottom:1px solid rgba(201,169,110,0.3); }
+.subsection-title em { font-style:italic; color:var(--gold); }
+
+/* WINE GRID */
+.wine-producer { margin-bottom:36px; }
+.wine-producer-name { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:16px; padding-bottom:8px; border-bottom:1px solid rgba(201,169,110,0.2); }
+.wine-item { display:flex; justify-content:space-between; align-items:baseline; padding:10px 0; border-bottom:1px solid rgba(26,39,68,0.05); }
+.wine-name { font-size:14px; color:var(--navy); font-weight:300; }
+.wine-detail { font-size:11px; color:rgba(26,39,68,0.45); margin-top:2px; }
+.wine-price { font-family:'Cormorant Garamond',serif; font-size:18px; color:var(--gold); font-weight:300; flex-shrink:0; margin-left:16px; }
+
+/* FOOTER */
+.menu-footer { background:var(--navy2); padding:48px 60px; text-align:center; }
+.menu-footer-logo { font-family:'Cormorant Garamond',serif; font-size:32px; letter-spacing:10px; color:rgba(255,255,255,0.08); font-weight:300; margin-bottom:12px; }
+.menu-footer-note { font-size:11px; color:rgba(255,255,255,0.25); letter-spacing:1px; }
+.menu-footer-note a { color:var(--gold); text-decoration:none; }
+.allergen-note { max-width:800px; margin:20px auto 0; font-size:11px; color:rgba(255,255,255,0.2); line-height:1.7; }
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .menu-header { padding:40px 24px 28px; }
+  .menu-nav-inner { padding:0 16px; }
+  .menu-content { padding:0 24px 60px; }
+  .items-grid { grid-template-columns:1fr; }
+  .section-title { font-size:32px; }
+  .header-back { top:24px; left:24px; }
+  .menu-footer { padding:36px 24px; }
+}
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+
+<!-- HEADER -->
+<div class="menu-header">
+  <a href="index.html" class="header-back">← Înapoi</a>
+  <div class="header-logo">NOD</div>
+  <div class="header-eyebrow">Port Tomis · Constanța</div>
+  <h1 class="header-title">Meniu <em>NOD</em></h1>
+  <div class="header-note">* Produsele marcate conțin sau pot conține alergeni. Informații disponibile la solicitare.</div>
+</div>
+
+<!-- NAV TABS -->
+<div class="menu-nav">
+  <div class="menu-nav-inner">
+    <button class="menu-tab active" onclick="switchSection('aperitive',this)">Aperitive</button>
+    <button class="menu-tab" onclick="switchSection('peste',this)">Pește</button>
+    <button class="menu-tab" onclick="switchSection('fructe',this)">Fructe de mare</button>
+    <button class="menu-tab" onclick="switchSection('carne',this)">Carne</button>
+    <button class="menu-tab" onclick="switchSection('paste',this)">Paste & Risotto</button>
+    <button class="menu-tab" onclick="switchSection('salate',this)">Salate</button>
+    <button class="menu-tab" onclick="switchSection('garnituri',this)">Garnituri</button>
+    <button class="menu-tab" onclick="switchSection('desert',this)">Desert</button>
+    <button class="menu-tab" id="tab-bar" onclick="switchSection('bar',this)">Bar</button>
+    <button class="menu-tab" onclick="switchSection('vinuri',this)">Vinuri</button>
+    <button class="menu-tab" onclick="switchSection('copii',this)">Meniu Copii</button>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="menu-content">
+
+  <!-- APERITIVE -->
+  <div class="menu-section active" id="sec-aperitive">
+    <div class="section-header">
+      <div class="section-label">De început</div>
+      <div class="section-title">Aperitive</div>
+    </div>
+    <div class="items-grid">
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Platou dobrogean</div><div class="mi-weight">500g</div><div class="mi-desc">Pastrami curcan & oaie, telemea oaie & vacă, roșii, castraveți, ceapă, pâine</div></div><div class="mi-price">78 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Halloumi caramelizat</div><div class="mi-weight">160g</div><div class="mi-desc">Salată edamame*, ceapă verde, sos de miere, mix semințe</div></div><div class="mi-price">40 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Vânătă coaptă cu iaurt și rodie</div><div class="mi-weight">180g</div><div class="mi-desc">Iaurt, rodie, sirop rodie, ceapă verde crispy, pâine</div></div><div class="mi-price">32 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Roșii cu feta la cuptor</div><div class="mi-weight">200g</div><div class="mi-desc">Brânză feta, ceapă verde, ulei aromatizat, sos roșii, pâine</div></div><div class="mi-price">28 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Conopidă pane</div><div class="mi-weight">180g</div><div class="mi-desc">Maioneză picantă, boia afumată, panko cu semințe</div></div><div class="mi-price">40 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Dovlecei pane cu tzatziki</div><div class="mi-weight">150g</div><div class="mi-desc">Panko cu semințe, sos tzatziki</div></div><div class="mi-price">25 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Tartar de ton*</div><div class="mi-weight">200g</div><div class="mi-desc">Ton*, avocado, sos butter soy, edamame*, ridiche, wakame*, pâine</div></div><div class="mi-price">60 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Ardei pimientos de padron</div><div class="mi-weight">150g</div><div class="mi-desc">Ulei de măsline, fulgi de sare</div></div><div class="mi-price">35 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Icre de știucă*</div><div class="mi-weight">160g</div><div class="mi-desc">Cu lămâie și ceapă roșie, pâine</div></div><div class="mi-price">45 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Icre de crap*</div><div class="mi-weight">160g</div><div class="mi-desc">Cu lămâie și ceapă roșie, pâine</div></div><div class="mi-price">33 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Hummus cu ardei copt</div><div class="mi-weight">200g</div><div class="mi-desc">Boia afumată, ardei copt, mix semințe, pâine</div></div><div class="mi-price">38 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Coș pâine</div><div class="mi-weight">150g</div></div><div class="mi-price">10 lei</div></div>
+    </div>
+  </div>
+
+  <!-- PESTE -->
+  <div class="menu-section" id="sec-peste">
+    <div class="section-header">
+      <div class="section-label">De la apă la farfurie</div>
+      <div class="section-title">Preparate <em>Pește</em></div>
+    </div>
+    <div class="items-grid">
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Platou pește la plită</div><div class="mi-weight">900g</div><div class="mi-desc">Biban*, dorada*, somon*, crap*, barbun, stavrid, mujdei, mămăligă</div></div><div class="mi-price">250 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Borș de pește</div><div class="mi-weight">450g</div><div class="mi-desc">Mix pește, roșii, borș, morcovi, țelină, cartofi, leuștean</div></div><div class="mi-price">38 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Hamsii crocante</div><div class="mi-weight">200g</div><div class="mi-desc">Hamsii*, mămăligă, mujdei</div></div><div class="mi-price">40 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Somon teriyaki</div><div class="mi-weight">320g</div><div class="mi-desc">File somon*, fasole verde, edamame, mix semințe, lămâie</div></div><div class="mi-price">78 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">File de doradă cu piure de mazăre</div><div class="mi-weight">300g</div><div class="mi-desc">Doradă* (2 file), piure mazăre*, ulei busuioc, baby morcovi, lămâie</div></div><div class="mi-price">65 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">File de biban și risotto de lămâie</div><div class="mi-weight">290g</div><div class="mi-desc">Biban* (2 file), bază risotto, unt, gran moravia, zeamă lămâie</div></div><div class="mi-price">65 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Saramură de crap cu mămăligă</div><div class="mi-weight">500g</div><div class="mi-desc">Crap*, mămăligă, lămâie</div></div><div class="mi-price">50 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Pălamidă pe plită cu mămăligă</div><div class="mi-weight">450g</div><div class="mi-desc">Pălamidă, mămăligă, mujdei</div></div><div class="mi-price">52 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Crap prăjit cu mămăligă</div><div class="mi-weight">450g</div><div class="mi-desc">Crap*, mămăligă, mujdei, lămâie</div></div><div class="mi-price">56 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Stavrid prăjit cu mămăligă</div><div class="mi-weight">400g</div><div class="mi-desc">Stavrid*, mămăligă, mujdei, lămâie</div></div><div class="mi-price">49 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Barbun prăjit cu mămăligă</div><div class="mi-weight">400g</div><div class="mi-desc">Barbun*, mămăligă, mujdei, lămâie</div></div><div class="mi-price">49 lei</div></div>
+    </div>
+  </div>
+
+  <!-- FRUCTE DE MARE -->
+  <div class="menu-section" id="sec-fructe">
+    <div class="section-header">
+      <div class="section-label">Din adâncuri</div>
+      <div class="section-title">Fructe <em>de mare</em></div>
+    </div>
+    <div class="items-grid">
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Platou fructe de mare crocante</div><div class="mi-weight">900g</div><div class="mi-desc">Creveți*, calamar*, baby caracatiță*, vanamei*, hamsie*, maioneză picantă, mujdei, lămâie</div></div><div class="mi-price">180 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Platou fructe de mare la plită</div><div class="mi-weight">900g</div><div class="mi-desc">Creveți*, calamar*, caracatiță*, vanamei*, scoici, cartofi baby, unt, lămâie</div></div><div class="mi-price">195 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Midii prăjite cu maioneză picantă</div><div class="mi-weight">190g</div><div class="mi-desc">Carne midii*, maioneză picantă, ceapă verde</div></div><div class="mi-price">30 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Scoici în sos de vin</div><div class="mi-weight">800g</div><div class="mi-desc">Scoici, vin alb, unt, roșii cherry, busuioc, usturoi</div></div><div class="mi-price">60 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Scoici în sos roșu</div><div class="mi-weight">800g</div><div class="mi-desc">Scoici, vin alb, unt, roșii cherry, busuioc, sos roșii</div></div><div class="mi-price">60 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Fritto misto</div><div class="mi-weight">350g</div><div class="mi-desc">Creveți*, calamari*, baby caracatiță*, vanamei*, hamsie*, lămâie, mujdei</div></div><div class="mi-price">70 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Creveți în unt și usturoi</div><div class="mi-weight">200g</div><div class="mi-desc">Creveți*, vanamei*, unt, usturoi, roșii cherry, busuioc, vin alb</div></div><div class="mi-price">52 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Creveți saganaki</div><div class="mi-weight">290g</div><div class="mi-desc">Creveți*, roșii cherry, usturoi, feta, sos roșii, vin alb, unt</div></div><div class="mi-price">65 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Caracatiță la plită cu cartofi zdrobiți</div><div class="mi-weight">350g</div><div class="mi-desc">Caracatiță*, cartofi zdrobiți, unt, usturoi, vin alb, lămâie</div></div><div class="mi-price">98 lei</div></div>
+    </div>
+  </div>
+
+  <!-- CARNE -->
+  <div class="menu-section" id="sec-carne">
+    <div class="section-header">
+      <div class="section-label">De la grătar</div>
+      <div class="section-title">Preparate <em>Carne</em></div>
+    </div>
+    <div class="items-grid">
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Platou de carne</div><div class="mi-weight">1kg</div><div class="mi-desc">Tomahawk porc*, piept pui*, mușchi vită*, frigărui pui*, cartofi prăjiți, tzatziki, mujdei</div></div><div class="mi-price">280 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Piept de pui cu cartofi baby și sos șofran</div><div class="mi-weight">430g</div><div class="mi-desc">Piept pui*, cartofi baby, sos șofran, unt</div></div><div class="mi-price">60 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Frigărui de pui cu tzatziki</div><div class="mi-weight">450g</div><div class="mi-desc">Frigărui pui din pulpe*, cartofi prăjiți, tzatziki, lipie durum</div></div><div class="mi-price">58 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Scalopina de pui cu cartofi prăjiți</div><div class="mi-weight">250g</div><div class="mi-desc">Piept pui*, smântână, ciuperci, cartofi prăjiți</div></div><div class="mi-price">55 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Pulpă de rață cu humus și rodie</div><div class="mi-weight">280g</div><div class="mi-desc">Pulpă rață, humus, sos rodie, edamame</div></div><div class="mi-price">75 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Tomahawk de pork teriyaki</div><div class="mi-weight">380g</div><div class="mi-desc">Tomahawk porc*, sos teriyaki, salată mix, dressing vinegretă</div></div><div class="mi-price">65 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Coaste de porc sos BBQ</div><div class="mi-weight">600g</div><div class="mi-desc">Coaste porc*, sos bbq, cartofi prăjiți, salată</div></div><div class="mi-price">80 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Mușchi de vită cu sos buttersoy</div><div class="mi-weight">240g</div><div class="mi-desc">Mușchi vită*, sos buttersoy, dressing muștar, ceapă verde, mix semințe</div></div><div class="mi-price">130 lei</div></div>
+    </div>
+  </div>
+
+  <!-- PASTE & RISOTTO -->
+  <div class="menu-section" id="sec-paste">
+    <div class="section-header">
+      <div class="section-label">Paste artizanale</div>
+      <div class="section-title">Paste & <em>Risotto</em></div>
+    </div>
+    <div class="items-grid">
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Tagliatelle cu hribi și trufe</div><div class="mi-weight">300g</div><div class="mi-desc">Tagliatelle*, sos ciuperci, smântână</div></div><div class="mi-price">45 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Tagliatelle cu fructe de mare</div><div class="mi-weight">450g</div><div class="mi-desc">Tagliatelle*, creveți*, calamar*, scoici, caracatiță*, sos roșii, vin alb, busuioc</div></div><div class="mi-price">68 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Penne roze cu piept de pui</div><div class="mi-weight">400g</div><div class="mi-desc">Penne*, sos roșii, smântână, piept pui*, vin alb, gran moravia</div></div><div class="mi-price">52 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Torteloni formaggi</div><div class="mi-weight">250g</div><div class="mi-desc">Torteloni*, smântână, gran moravia</div></div><div class="mi-price">48 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Risotto cu hribi, trufe și vită</div><div class="mi-weight">310g</div><div class="mi-desc">Bază risotto, sos ciuperci, vită*, unt, gran moravia</div></div><div class="mi-price">75 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Risotto verdi cu fructe de mare</div><div class="mi-weight">500g</div><div class="mi-desc">Bază risotto, piure spanac, creveți*, calamar*, caracatiță*, scoici, vin alb</div></div><div class="mi-price">75 lei</div></div>
+    </div>
+  </div>
+
+  <!-- SALATE -->
+  <div class="menu-section" id="sec-salate">
+    <div class="section-header">
+      <div class="section-label">Proaspete</div>
+      <div class="section-title"><em>Salate</em></div>
+      <div class="section-note">Adaugă proteine: Creveți +25 lei · Vită +35 lei · Pui +12 lei</div>
+    </div>
+    <div class="items-grid">
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Salată grecească</div><div class="mi-weight">300g</div><div class="mi-desc">Roșii, castraveți, brânză feta, măsline, ceapă roșie, ardei</div></div><div class="mi-price">38 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Salată Caesar</div><div class="mi-weight">350g</div><div class="mi-desc">Salată romană, piept pui*, dressing caesar, roșii cherry, gran moravia, crutoane</div></div><div class="mi-price">45 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Salată Rucola gran moravia</div><div class="mi-weight">250g</div><div class="mi-desc">Rucola, roșii cherry, dressing vinegretă, rodie, gran moravia</div></div><div class="mi-price">25 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Salată frunze</div><div class="mi-weight">200g</div><div class="mi-desc">Lolo rosso, rucola, romană, dressing vinegretă, mix semințe</div></div><div class="mi-price">17 lei</div></div>
+    </div>
+  </div>
+
+  <!-- GARNITURI -->
+  <div class="menu-section" id="sec-garnituri">
+    <div class="section-header">
+      <div class="section-label">Alege-ți</div>
+      <div class="section-title"><em>Garnituri</em></div>
+    </div>
+    <div class="items-grid">
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Cartofi prăjiți simpli</div><div class="mi-weight">150g</div></div><div class="mi-price">18 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Cartofi prăjiți cu usturoi și gran moravia</div><div class="mi-weight">170g</div></div><div class="mi-price">25 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Cartofi zdrobiți cu unt și pătrunjel</div><div class="mi-weight">200g</div></div><div class="mi-price">25 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Cartofi zdrobiți cu feta și pătrunjel</div><div class="mi-weight">230g</div></div><div class="mi-price">28 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Legume la grătar</div><div class="mi-weight">200g</div><div class="mi-desc">Roșii, dovlecei, ceapă roșie, ciuperci</div></div><div class="mi-price">23 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Mămăligă</div><div class="mi-weight">150g</div></div><div class="mi-price">12 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Risotto simplu</div><div class="mi-weight">100g</div><div class="mi-desc">Bază risotto, unt, gran moravia</div></div><div class="mi-price">19 lei</div></div>
+    </div>
+  </div>
+
+  <!-- DESERT -->
+  <div class="menu-section" id="sec-desert">
+    <div class="section-header">
+      <div class="section-label">Finalul perfect</div>
+      <div class="section-title"><em>Desert</em></div>
+    </div>
+    <div class="items-grid">
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Lava cake* cu înghețată</div><div class="mi-weight">110g</div></div><div class="mi-price">32 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Sorbet în coajă de lămâie*</div><div class="mi-weight">160ml</div><div class="mi-desc">Sorbet artizanal în coajă naturală de lămâie</div></div><div class="mi-price">32 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Înghețată în nucă de cocos*</div><div class="mi-weight">160ml</div></div><div class="mi-price">32 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Înghețată în baby ananas*</div><div class="mi-weight">160ml</div></div><div class="mi-price">32 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Profiterol*</div><div class="mi-weight">110g</div></div><div class="mi-price">32 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Lemon mousse*</div><div class="mi-weight">90g</div><div class="mi-desc">Mousse delicat de lămâie</div></div><div class="mi-price">32 lei</div></div>
+    </div>
+  </div>
+
+  <!-- BAR -->
+  <div class="menu-section" id="sec-bar">
+    <div class="section-header">
+      <div class="section-label">Cocktailuri & Băuturi</div>
+      <div class="section-title"><em>Barul</em> NOD</div>
+    </div>
+
+    <div class="subsection-title">Cocktailuri <em>Signature</em></div>
+    <div class="drinks-grid">
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Paloma · 200ml</div><div class="mi-desc">Tequila Altos Plata, Three Cents Grapefruit Soda, sare de mare</div></div><div class="mi-price">41 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Amaretto Sour · 120ml</div><div class="mi-desc">De Kuyper Amaretto, fresh de lămâie, sirop de zahăr, foamer</div></div><div class="mi-price">41 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Pornstar Martini · 120ml</div><div class="mi-desc">Absolut Vanilla, piure fructul pasiunii, zeamă lămâie, De Kuyper Passion Fruit, Prosecco</div></div><div class="mi-price">41 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Whisky Sour · 120ml</div><div class="mi-desc">Four Roses Bourbon, zeamă lămâie, sirop zahăr, foamer</div></div><div class="mi-price">41 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Espresso Martini · 120ml</div><div class="mi-desc">Absolut Vodka, espresso, lichior de cafea, sirop zahăr</div></div><div class="mi-price">41 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Skrewball Espresso Martini · 120ml</div><div class="mi-desc">Skrewball, espresso, lichior de cafea, sirop zahăr</div></div><div class="mi-price">41 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Negroni · 90ml</div><div class="mi-desc">Campari, vermut roșu, Malfy Originale</div></div><div class="mi-price">39 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Negroni Sbagliato · 120ml</div><div class="mi-desc">Campari, vermut roșu Petroni, vin spumant, portocală</div></div><div class="mi-price">39 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Campari Tonic · 200ml</div><div class="mi-desc">Campari, Three Cents Tonic</div></div><div class="mi-price">38 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Cuba Libre · 180ml</div><div class="mi-desc">Rom, Coca-Cola, lime proaspăt</div></div><div class="mi-price">30 lei</div></div>
+    </div>
+
+    <div class="subsection-title">Gin & <em>Tonic</em></div>
+    <div class="drinks-grid">
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Malfy Classic G&T · 200ml</div><div class="mi-desc">Malfy Gin, lime, Three Cents Tonic</div></div><div class="mi-price">39 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Malfy Arancia · 200ml</div><div class="mi-desc">Malfy Arancia, mentă, portocală, Three Cents Tonic</div></div><div class="mi-price">39 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Malfy Rosa Grapefruit · 200ml</div><div class="mi-desc">Malfy Rosa, grepfrut, rozmarin, Three Cents Grapefruit</div></div><div class="mi-price">39 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Malfy Limone · 200ml</div><div class="mi-desc">Malfy Limone, lămâie, busuioc, Three Cents Tonic</div></div><div class="mi-price">39 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Beefeater 0 Tonic · 200ml (fără alcool)</div><div class="mi-desc">Beefeater 0, Three Cents Tonic, lime</div></div><div class="mi-price">39 lei</div></div>
+    </div>
+
+    <div class="subsection-title"><em>Spritzuri</em></div>
+    <div class="drinks-grid">
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Aperitivo Spritz · 200ml</div><div class="mi-desc">Petroni Aperitivo, vin spumant, apă carbogazoasă</div></div><div class="mi-price">38 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Hugo · 200ml</div><div class="mi-desc">Sirop de soc, lime, mentă, vin spumant, apă carbogazoasă</div></div><div class="mi-price">38 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Passion Fruit Spritz · 200ml</div><div class="mi-desc">De Kuyper Passion Fruit, piure fructul pasiunii, sirop vanilie, lămâie, vin spumant</div></div><div class="mi-price">41 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Peach Spritz · 200ml</div><div class="mi-desc">Peachtree, vin spumant, apă carbogazoasă, lime</div></div><div class="mi-price">41 lei</div></div>
+    </div>
+
+    <div class="subsection-title">Non-<em>Alcoolice</em></div>
+    <div class="drinks-grid">
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Ramazzotti Arancia 0 Tonic · 200ml</div><div class="mi-desc">Ramazzotti Arancia 0, Three Cents Tonic, portocală</div></div><div class="mi-price">38 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Cocktail NOD · 200ml</div><div class="mi-desc">Beefeater Dry 0, fructul pasiunii, Three Cents Grapefruit Soda</div></div><div class="mi-price">35 lei</div></div>
+    </div>
+
+    <div class="subsection-title"><em>Cafea</em></div>
+    <div class="items-grid">
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Espresso · 30ml</div></div><div class="mi-price">16 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Espresso Doppio · 60ml</div></div><div class="mi-price">19 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Cappuccino · 120ml</div></div><div class="mi-price">21 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Latte · 180ml</div></div><div class="mi-price">23 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Flat White · 120ml</div></div><div class="mi-price">23 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Iced Vanilla Latte · 180ml</div></div><div class="mi-price">25 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Iced Frappé · 200ml</div></div><div class="mi-price">26 lei</div></div>
+    </div>
+
+    <div class="subsection-title"><em>Limonade</em> & Fresh-uri</div>
+    <div class="items-grid">
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Limonadă clasică · 250ml</div><div class="mi-desc">Zeamă lămâie, sirop zahăr, apă</div></div><div class="mi-price">24 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Limonadă cu mentă · 250ml</div></div><div class="mi-price">26 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Limonadă cu fructul pasiunii · 250ml</div></div><div class="mi-price">26 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Limonadă cu ananas · 250ml</div></div><div class="mi-price">26 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Limonadă cu pepene galben · 250ml</div></div><div class="mi-price">26 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Limonadă cu căpșune · 250ml</div></div><div class="mi-price">26 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Fresh portocale / grepfrut / mixt · 200ml</div></div><div class="mi-price">26 lei</div></div>
+    </div>
+  </div>
+
+  <!-- VINURI -->
+  <div class="menu-section" id="sec-vinuri">
+    <div class="section-header">
+      <div class="section-label">Selecția casei</div>
+      <div class="section-title">Vinuri & <em>Spumante</em></div>
+    </div>
+
+    <div class="wine-producer">
+      <div class="wine-producer-name">Jidvei</div>
+      <div class="wine-item"><div><div class="wine-name">Owner's Choice ANA Sauvignon Blanc sec</div><div class="wine-detail">vol. alc. 13% · 750ml</div></div><div class="wine-price">240 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Owner's Choice ANA Fetească Regală sec</div><div class="wine-detail">vol. alc. 13% · 750ml</div></div><div class="wine-price">240 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Owner's Choice ANA Chardonnay sec</div><div class="wine-detail">vol. alc. 13.5% · 750ml</div></div><div class="wine-price">240 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Owner's Choice MARIA Pinot Gris sec</div><div class="wine-detail">vol. alc. 13.5% · 750ml</div></div><div class="wine-price">240 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Jidvei Pinot Noir rosé sec</div><div class="wine-detail">vol. alc. 12.5% · 750ml</div></div><div class="wine-price">220 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Jidvei Pinot Noir roșu sec</div><div class="wine-detail">vol. alc. 13.5% · 750ml</div></div><div class="wine-price">240 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Navigo Siaj Chardonnay sec</div><div class="wine-detail">vol. alc. 13.5% · 750ml</div></div><div class="wine-price">130 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Navigo Siaj rosé sec</div><div class="wine-detail">vol. alc. 12.5% · 750ml</div></div><div class="wine-price">130 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Navigo Siaj Fetească Neagră sec</div><div class="wine-detail">vol. alc. 14% · 750ml</div></div><div class="wine-price">130 lei</div></div>
+    </div>
+
+    <div class="wine-producer">
+      <div class="wine-producer-name">Domeniile Caraman</div>
+      <div class="wine-item"><div><div class="wine-name">Tabu alb demisec</div><div class="wine-detail">vol. alc. 12.5% · 750ml</div></div><div class="wine-price">120 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Tabu rosé demisec</div><div class="wine-detail">vol. alc. 13% · 750ml</div></div><div class="wine-price">120 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Tabu roșu demisec</div><div class="wine-detail">vol. alc. 13.5% · 750ml</div></div><div class="wine-price">120 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Baby D rosé demidulce</div><div class="wine-detail">vol. alc. 12.3% · 750ml</div></div><div class="wine-price">160 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Tamam Sauvignon Blanc sec</div><div class="wine-detail">vol. alc. 12.5% · 750ml</div></div><div class="wine-price">180 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Tamam Syrah rosé sec</div><div class="wine-detail">vol. alc. 13.2% · 750ml</div></div><div class="wine-price">180 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Tamam Merlot sec</div><div class="wine-detail">vol. alc. 14.5% · 750ml</div></div><div class="wine-price">230 lei</div></div>
+    </div>
+
+    <div class="wine-producer">
+      <div class="wine-producer-name">Crama Murfatlar</div>
+      <div class="wine-item"><div><div class="wine-name">Aerosoli Fetească Regală & Sauvignon Blanc sec</div><div class="wine-detail">vol. alc. 12% · 750ml</div></div><div class="wine-price">130 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Aerosoli Fetească Neagră & Pinot Noir rosé</div><div class="wine-detail">vol. alc. 12.5% · 750ml</div></div><div class="wine-price">130 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Charme de la Mer rosé demisec</div><div class="wine-detail">vol. alc. 12.5% · 750ml</div></div><div class="wine-price">260 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Charme de la Mer rosé sec</div><div class="wine-detail">vol. alc. 12.5% · 750ml</div></div><div class="wine-price">260 lei</div></div>
+    </div>
+
+    <div class="wine-producer">
+      <div class="wine-producer-name">Șampanie & Spumante</div>
+      <div class="wine-item"><div><div class="wine-name">Perrier-Jouët Grand Brut</div><div class="wine-detail">vol. alc. 12.5% · 750ml</div></div><div class="wine-price">820 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Perrier-Jouët Blason Rosé</div><div class="wine-detail">vol. alc. 12.5% · 750ml</div></div><div class="wine-price">910 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Prosecco DeGiusti Dry</div><div class="wine-detail">vol. alc. 11.5% · 750ml</div></div><div class="wine-price">180 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Scintti Brut Fetească Regală</div><div class="wine-detail">vol. alc. 11.3% · 750ml</div></div><div class="wine-price">120 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Scintti Muscat</div><div class="wine-detail">vol. alc. 11.3% · 750ml</div></div><div class="wine-price">120 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Scintti Rosé Brut Syrah</div><div class="wine-detail">vol. alc. 11.3% · 750ml</div></div><div class="wine-price">120 lei</div></div>
+    </div>
+
+    <div class="wine-producer">
+      <div class="wine-producer-name">Vin la Pahar · 150ml</div>
+      <div class="wine-item"><div><div class="wine-name">Jidvei Iluziv alb sec</div></div><div class="wine-price">30 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Jidvei Iluziv rosé sec</div></div><div class="wine-price">30 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Tabu alb demisec</div></div><div class="wine-price">30 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Tabu rosé demisec</div></div><div class="wine-price">30 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Tabu roșu demisec</div></div><div class="wine-price">30 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Exclusive Chardonnay sec</div></div><div class="wine-price">35 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Charme de la Mer rosé sec</div></div><div class="wine-price">55 lei</div></div>
+      <div class="wine-item"><div><div class="wine-name">Prosecco Pigia</div></div><div class="wine-price">26 lei</div></div>
+    </div>
+  </div>
+
+  <!-- MENIU COPII -->
+  <div class="menu-section" id="sec-copii">
+    <div class="section-header">
+      <div class="section-label">Pentru cei mici</div>
+      <div class="section-title">Meniu <em>Copii</em></div>
+    </div>
+    <div class="items-grid">
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Gujoane de pui cu cartofi prăjiți</div><div class="mi-weight">250g</div><div class="mi-desc">Piept pui, cartofi prăjiți</div></div><div class="mi-price">25 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Penne cu sos roșu</div><div class="mi-desc">Penne, sos roșii</div></div><div class="mi-price">20 lei</div></div>
+      <div class="menu-item"><div class="mi-left"><div class="mi-name">Șnițel de pui cu cartofi prăjiți</div><div class="mi-weight">250g</div><div class="mi-desc">Piept pui, panko cu semințe, cartofi prăjiți</div></div><div class="mi-price">25 lei</div></div>
+    </div>
+  </div>
+
+</div><!-- end menu-content -->
+
+<!-- FOOTER -->
+<div class="menu-footer">
+  <div class="menu-footer-logo">NOD</div>
+  <div class="menu-footer-note">Strada Lebedei · Port Tomis · Constanța · <a href="index.html">nodrestaurant.ro</a></div>
+  <div class="allergen-note">* Produsele marcate conțin sau pot conține: gluten, crustacee, ouă, pește, arahide, soia, lapte, nuci, țelină, muștar, semințe susan, dioxid de sulf și sulfiți, lupin, moluște. Informații detaliate despre alergeni disponibile la cerere.</div>
+</div>
+
+<script>
+// Cursor
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => { cursor.style.left = e.clientX+'px'; cursor.style.top = e.clientY+'px'; });
+
+// Tab switching
+function switchSection(id, btn) {
+  document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.menu-tab').forEach(b => b.classList.remove('active'));
+  const sec = document.getElementById('sec-' + id);
+  if (sec) sec.classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Check for #bar anchor
+if (window.location.hash === '#bar') {
+  const barTab = document.getElementById('tab-bar');
+  if (barTab) switchSection('bar', barTab);
+}
+</script>
+</body>
+</html>

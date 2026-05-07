@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recenzie · NOD Restaurant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --cream: #F5F0E8;
+  --navy: #1A2744;
+  --navy2: #0D1525;
+  --gold: #C9A96E;
+  --gold2: #E8C99A;
+}
+body { background:var(--cream); font-family:'Jost',sans-serif; min-height:100vh; display:flex; flex-direction:column; cursor:none; }
+#cursor { position:fixed; width:10px; height:10px; background:var(--gold); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); mix-blend-mode:multiply; }
+
+/* HEADER */
+.rev-header { background:var(--navy2); padding:56px 48px 48px; text-align:center; position:relative; }
+.rev-header::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold)); }
+.rev-logo { font-family:'Cormorant Garamond',serif; font-size:32px; letter-spacing:10px; color:rgba(255,255,255,0.1); font-weight:300; margin-bottom:8px; }
+.rev-eyebrow { font-size:9px; letter-spacing:5px; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+.rev-title { font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:300; color:white; }
+.rev-title em { font-style:italic; color:var(--gold); }
+.rev-subtitle { font-size:13px; color:rgba(255,255,255,0.35); margin-top:10px; font-weight:300; line-height:1.7; }
+
+/* MAIN */
+main { flex:1; display:flex; align-items:center; justify-content:center; padding:60px 24px; }
+.review-container { width:100%; max-width:560px; }
+
+/* STEP 1 - STARS */
+#step-stars { text-align:center; }
+.step-question { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--navy); margin-bottom:8px; }
+.step-sub { font-size:12px; color:rgba(26,39,68,0.45); letter-spacing:1px; margin-bottom:44px; }
+.stars-row { display:flex; justify-content:center; gap:12px; margin-bottom:48px; }
+.star-btn {
+  width:64px; height:64px; border-radius:50%; border:1px solid rgba(26,39,68,0.15);
+  background:white; font-size:28px; cursor:none; display:flex; align-items:center; justify-content:center;
+  transition:all 0.2s; box-shadow:0 2px 12px rgba(0,0,0,0.05);
+  position:relative;
+}
+.star-btn:hover, .star-btn.active { background:var(--gold); border-color:var(--gold); transform:scale(1.12); box-shadow:0 8px 24px rgba(201,169,110,0.35); }
+.star-btn .star-num { position:absolute; bottom:-24px; left:50%; transform:translateX(-50%); font-size:10px; color:rgba(26,39,68,0.4); letter-spacing:1px; }
+.star-btn.active .star-num { color:var(--gold); }
+
+/* STEP 2A - POSITIVE (4-5 stars) */
+#step-positive { text-align:center; display:none; }
+.positive-icon { font-size:64px; margin-bottom:24px; animation:bounceIn 0.6s ease; }
+@keyframes bounceIn { 0%{transform:scale(0)} 60%{transform:scale(1.2)} 100%{transform:scale(1)} }
+.positive-title { font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:300; color:var(--navy); margin-bottom:12px; }
+.positive-title em { font-style:italic; color:var(--gold); }
+.positive-text { font-size:14px; color:rgba(26,39,68,0.55); line-height:1.8; margin-bottom:36px; max-width:400px; margin-left:auto; margin-right:auto; font-weight:300; }
+.btn-google { display:inline-flex; align-items:center; gap:12px; background:#4285f4; color:white; padding:18px 44px; font-size:11px; letter-spacing:3px; text-transform:uppercase; text-decoration:none; cursor:none; font-family:'Jost'; font-weight:500; transition:all 0.3s; margin-bottom:16px; }
+.btn-google:hover { background:#3367d6; transform:translateY(-2px); box-shadow:0 8px 24px rgba(66,133,244,0.35); }
+.btn-google svg { width:20px; height:20px; flex-shrink:0; }
+.positive-or { font-size:11px; color:rgba(26,39,68,0.3); margin:12px 0; letter-spacing:2px; text-transform:uppercase; }
+.btn-secondary { background:transparent; border:1px solid rgba(26,39,68,0.15); color:rgba(26,39,68,0.5); padding:12px 32px; font-size:10px; letter-spacing:2px; text-transform:uppercase; cursor:none; font-family:'Jost'; transition:all 0.3s; }
+.btn-secondary:hover { border-color:var(--gold); color:var(--gold); }
+
+/* STEP 2B - NEGATIVE (<4 stars) */
+#step-negative { display:none; }
+.negative-title { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--navy); margin-bottom:8px; }
+.negative-title em { font-style:italic; color:var(--gold); }
+.negative-text { font-size:13px; color:rgba(26,39,68,0.5); margin-bottom:32px; line-height:1.8; font-weight:300; }
+.review-form { background:white; padding:40px; border:1px solid rgba(26,39,68,0.08); box-shadow:0 4px 32px rgba(0,0,0,0.06); }
+.review-form::before { content:''; display:block; height:2px; background:linear-gradient(90deg,var(--gold),var(--gold2)); margin:-40px -40px 36px; }
+.form-group { margin-bottom:20px; }
+.form-lbl { font-size:8px; letter-spacing:3px; text-transform:uppercase; color:rgba(26,39,68,0.45); margin-bottom:8px; display:block; }
+.form-inp { width:100%; background:#fafaf8; border:1px solid rgba(26,39,68,0.1); color:var(--navy); padding:14px 16px; font-size:13px; font-family:'Jost'; outline:none; transition:border-color 0.3s; }
+.form-inp:focus { border-color:var(--gold); background:white; }
+.form-inp::placeholder { color:rgba(26,39,68,0.25); }
+textarea.form-inp { resize:vertical; min-height:140px; }
+.selected-stars { display:flex; gap:4px; margin-bottom:20px; font-size:22px; }
+.form-submit { width:100%; background:var(--navy); color:white; padding:16px; font-size:10px; letter-spacing:3px; text-transform:uppercase; border:none; cursor:none; font-family:'Jost'; font-weight:400; transition:all 0.3s; margin-top:8px; }
+.form-submit:hover { background:var(--navy2); transform:translateY(-1px); }
+
+/* STEP 3 - THANK YOU */
+#step-thanks { text-align:center; display:none; }
+.thanks-icon { font-size:72px; margin-bottom:24px; animation:bounceIn 0.6s ease; }
+.thanks-title { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:300; color:var(--navy); margin-bottom:12px; }
+.thanks-title em { font-style:italic; color:var(--gold); }
+.thanks-text { font-size:14px; color:rgba(26,39,68,0.5); line-height:1.9; max-width:380px; margin:0 auto; font-weight:300; }
+.thanks-line { width:40px; height:1px; background:var(--gold); margin:28px auto; }
+
+/* FOOTER */
+.rev-footer { background:var(--navy2); padding:28px 48px; text-align:center; }
+.rev-footer-text { font-size:11px; color:rgba(255,255,255,0.2); }
+.rev-footer-text a { color:var(--gold); text-decoration:none; }
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+
+<div class="rev-header">
+  <div class="rev-logo">NOD</div>
+  <div class="rev-eyebrow">Mulțumim că ne-ai vizitat</div>
+  <h1 class="rev-title">Experiența ta <em>contează</em></h1>
+  <div class="rev-subtitle">Feedback-ul tău ne ajută să creștem<br>și să oferim mereu ce e mai bun.</div>
+</div>
+
+<main>
+  <div class="review-container">
+
+    <!-- STEP 1: STARS -->
+    <div id="step-stars">
+      <div class="step-question">Cum a fost experiența ta la NOD?</div>
+      <div class="step-sub">Selectează numărul de stele</div>
+      <div class="stars-row">
+        <button class="star-btn" onclick="selectStars(1)">⭐<span class="star-num">1</span></button>
+        <button class="star-btn" onclick="selectStars(2)">⭐<span class="star-num">2</span></button>
+        <button class="star-btn" onclick="selectStars(3)">⭐<span class="star-num">3</span></button>
+        <button class="star-btn" onclick="selectStars(4)">⭐<span class="star-num">4</span></button>
+        <button class="star-btn" onclick="selectStars(5)">⭐<span class="star-num">5</span></button>
+      </div>
+    </div>
+
+    <!-- STEP 2A: POSITIVE -->
+    <div id="step-positive">
+      <div class="positive-icon">🎉</div>
+      <div class="positive-title">Ne bucurăm că ți-a <em>plăcut!</em></div>
+      <div class="positive-text">O recenzie pe Google ne ajută enorm să ajungem la mai mulți oameni care caută o experiență ca a ta. Durează doar 30 de secunde.</div>
+      <a class="btn-google" href="https://g.page/r/YOUR-GOOGLE-REVIEW-LINK/review" target="_blank" id="google-review-btn">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        Lasă o recenzie pe Google
+      </a>
+      <div class="positive-or">sau</div>
+      <button class="btn-secondary" onclick="showNegativeForm()">Trimite feedback privat echipei</button>
+    </div>
+
+    <!-- STEP 2B: NEGATIVE -->
+    <div id="step-negative">
+      <div class="negative-title">Îmbunătățim <em>împreună</em></div>
+      <div class="negative-text">Ne pare rău că experiența nu a fost la așteptările tale. Spune-ne ce s-a întâmplat — echipa noastră citește fiecare mesaj și va acționa imediat.</div>
+      <div class="review-form">
+        <div class="selected-stars" id="stars-display"></div>
+        <form onsubmit="submitFeedback(event)">
+          <div class="form-group">
+            <label class="form-lbl">Numele tău (opțional)</label>
+            <input class="form-inp" type="text" id="fb-name" placeholder="Ion Popescu">
+          </div>
+          <div class="form-group">
+            <label class="form-lbl">Ce am putea îmbunătăți?</label>
+            <textarea class="form-inp" id="fb-text" placeholder="Spune-ne sincer ce nu a mers bine — mâncarea, serviciul, atmosfera, altceva..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-lbl">Email sau telefon (pentru a putea răspunde)</label>
+            <input class="form-inp" type="text" id="fb-contact" placeholder="exemplu@email.com sau 07XX XXX XXX">
+          </div>
+          <button type="submit" class="form-submit">Trimite feedback →</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- STEP 3: THANKS -->
+    <div id="step-thanks">
+      <div class="thanks-icon" id="thanks-icon">🙏</div>
+      <div class="thanks-title">Mulțumim din <em>suflet</em></div>
+      <div class="thanks-line"></div>
+      <div class="thanks-text" id="thanks-text">Feedback-ul tău a fost transmis echipei noastre. Promitem să îl citim cu atenție și să acționăm.</div>
+    </div>
+
+  </div>
+</main>
+
+<div class="rev-footer">
+  <div class="rev-footer-text">NOD Restaurant · Str. Lebedei · Port Tomis · Constanța · <a href="index.html">nodrestaurant.ro</a></div>
+</div>
+
+<script>
+// Cursor
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+
+let selectedStars = 0;
+
+function selectStars(n) {
+  selectedStars = n;
+
+  // Animate star buttons
+  document.querySelectorAll('.star-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', i < n);
+  });
+
+  // Wait a moment then transition
+  setTimeout(() => {
+    document.getElementById('step-stars').style.display = 'none';
+
+    if (n >= 4) {
+      // POSITIVE flow
+      document.getElementById('step-positive').style.display = 'block';
+    } else {
+      // NEGATIVE flow
+      showNegativeForm();
+    }
+  }, 600);
+}
+
+function showNegativeForm() {
+  document.getElementById('step-positive').style.display = 'none';
+  document.getElementById('step-negative').style.display = 'block';
+
+  // Show selected stars
+  const starsDisplay = document.getElementById('stars-display');
+  starsDisplay.innerHTML = '';
+  for (let i = 0; i < 5; i++) {
+    starsDisplay.innerHTML += i < selectedStars ? '⭐' : '☆';
+  }
+}
+
+function submitFeedback(e) {
+  e.preventDefault();
+
+  const payload = {
+    stars: selectedStars,
+    name: document.getElementById('fb-name').value,
+    feedback: document.getElementById('fb-text').value,
+    contact: document.getElementById('fb-contact').value,
+    timestamp: new Date().toISOString(),
+    source: 'QR Review Page'
+  };
+
+  // Send to Google Apps Script
+  const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+  if (SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'review', ...payload })
+    });
+  }
+
+  // Show thank you
+  document.getElementById('step-negative').style.display = 'none';
+  document.getElementById('step-thanks').style.display = 'block';
+  document.getElementById('thanks-icon').textContent = '🙏';
+  document.getElementById('thanks-text').textContent = 'Feedback-ul tău a fost transmis echipei noastre. Promitem să îl citim cu atenție și să ne îmbunătățim.';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOD Restaurant · Port Tomis · Constanța</title>
+<meta name="description" content="Restaurant NOD — experiență culinară la malul apei în Portul Tomis, Constanța. Pește proaspăt, fructe de mare, cocktailuri premium.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-follower"></div>
+<div id="progress"></div>
+
+<div id="room-transition">
+  <div class="transition-text" id="transition-text"></div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">N<span>O</span>D</div>
+  <div class="nav-links">
+    <a href="#scene-story">Povestea</a>
+    <a href="#rooms-nav">Meniu</a>
+    <a href="#gallery-section">Galerie</a>
+    <a href="#rezervari-section">Rezervări</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('rezervari-section').scrollIntoView({behavior:'smooth'})">Rezervă</button>
+</nav>
+
+<!-- INTRO OVERLAY -->
+<div id="intro">
+  <div class="intro-particles" id="particles"></div>
+  <div class="intro-card" id="intro-card">
+    <img class="intro-card-img"
+      src="https://drive.google.com/uc?export=view&id=1GbSYpTsy2uE3MrhYm53jrM7OQjKGifSu"
+      alt="NOD Restaurant">
+    <div class="intro-card-overlay"></div>
+    <div class="intro-card-content">
+      <div class="intro-eyebrow">Port Tomis · Constanța</div>
+      <div class="intro-title">N<em>O</em>D</div>
+      <div class="intro-sub">Restaurant</div>
+      <div class="intro-line"></div>
+      <div class="intro-cta">Scroll pentru a intra ↓</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN SITE -->
+<div id="main-site">
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-video-bg">
+      <video autoplay muted loop playsinline id="hero-video">
+        <source src="https://drive.google.com/uc?export=view&id=1dJA--pAthM_zGJbpbNdJjxIkpZzBDvBt" type="video/mp4">
+      </video>
+      <img src="https://drive.google.com/uc?export=view&id=1-W14wkLFYVDawXcMyLAj8bnnDWFC2PPe"
+           alt="NOD Restaurant" id="hero-fallback" style="display:none">
+    </div>
+    <div class="hero-parallax-overlay"></div>
+    <div class="hero-grain"></div>
+    <div class="hero-content">
+      <div class="hero-tagline" id="h-tagline">Unde portul devine masă</div>
+      <div class="hero-name" id="h-name">N<span class="o">O</span>D</div>
+      <div class="hero-sub-title" id="h-sub">Restaurant</div>
+      <div class="hero-desc" id="h-desc">O experiență culinară la malul apei, în inima Portului Tomis.<br>Pește proaspăt, atmosferă unică, priveliște neprețuită.</div>
+      <div class="hero-btns" id="h-btns">
+        <button class="btn-gold" onclick="document.getElementById('rooms-nav').scrollIntoView({behavior:'smooth'})">Explorează Meniul</button>
+        <button class="btn-ghost" onclick="document.getElementById('rezervari-section').scrollIntoView({behavior:'smooth'})">Rezervă o Masă</button>
+      </div>
+    </div>
+    <div class="hero-scroll-hint" id="h-scroll">
+      <div class="scroll-bar"></div>
+      <div class="scroll-txt">Explorează</div>
+    </div>
+  </section>
+
+  <!-- STORY SCENE -->
+  <section class="scene" id="scene-story">
+    <div class="scene-bg">
+      <img src="https://drive.google.com/uc?export=view&id=1hSbinKHV1hUAEY69nMFN3v6lKfdkTGfT" alt="Interior NOD">
+    </div>
+    <div class="scene-fade-right"></div>
+    <div class="scene-content">
+      <div class="story-text-block">
+        <div class="scene-label reveal-up">Povestea noastră</div>
+        <h2 class="scene-title reveal-up d1">Născut din <em>dragoste</em><br>pentru mare și gust</h2>
+        <div class="scene-body reveal-up d2">
+          <p>NOD nu s-a construit în jurul unui meniu. S-a construit în jurul unui loc — terasa albă, lumina apusului reflectată în apă, sunetul catargelor în vânt.</p>
+          <p>Am pornit de la o convingere simplă: cel mai bun loc să mănânci pește proaspăt este lângă apă. Portul Tomis ne-a oferit exact cadrul de care aveam nevoie.</p>
+          <p>Fiecare preparat este ales cu grijă. Fiecare ingredient are o poveste. Fiecare masă — o invitație să rămâi puțin mai mult.</p>
+        </div>
+      </div>
+      <div class="story-visual-block">
+        <img class="story-img-main reveal-up d2"
+          src="https://drive.google.com/uc?export=view&id=18BYoZUI8qbGtVhckpfjRGgjWhs8B-G6o"
+          alt="Atmosfera NOD">
+        <img class="story-img-accent reveal-up d3"
+          src="https://drive.google.com/uc?export=view&id=1250VTd_d-yEQU92yxd5zyVaHQ08oZn65"
+          alt="Detaliu NOD">
+      </div>
+    </div>
+  </section>
+
+  <div class="scene-divider"></div>
+
+  <!-- ROOMS NAV -->
+  <section id="rooms-nav">
+    <div class="rooms-bg-pattern"></div>
+    <div class="rooms-inner">
+      <div class="rooms-header">
+        <div class="rooms-label reveal-up">Explorează NOD</div>
+        <h2 class="rooms-title reveal-up d1">Plimbă-te prin <em>restaurant</em></h2>
+      </div>
+      <div class="rooms-grid">
+        <div class="room-card reveal-up" onclick="enterRoom('Bucătăria', 'menu.html')">
+          <img src="https://drive.google.com/uc?export=view&id=1nr7T4lsLp36hT4rLTiZ-Ax5QIS6Ieq62" alt="Bucătăria NOD">
+          <div class="room-card-overlay"></div>
+          <div class="room-card-content">
+            <div class="room-number">01</div>
+            <div class="room-label">Descoperă</div>
+            <div class="room-name">Bucătăria</div>
+            <div class="room-desc">Pește proaspăt, fructe de mare, preparate cu suflet. De la apă la farfurie.</div>
+            <div class="room-enter"><div class="room-enter-line"></div>Vezi meniul</div>
+          </div>
+        </div>
+        <div class="room-card reveal-up d1" onclick="enterRoom('Barul', 'menu.html#bar')">
+          <img src="https://drive.google.com/uc?export=view&id=1BeSVP3p_l3O8B1jjN5PHw7idmPeUzqxp" alt="Barul NOD">
+          <div class="room-card-overlay"></div>
+          <div class="room-card-content">
+            <div class="room-number">02</div>
+            <div class="room-label">Descoperă</div>
+            <div class="room-name">Barul</div>
+            <div class="room-desc">Cocktailuri premium, vinuri selectate, apus în pahar. Malfy, Perrier-Jouët și altele.</div>
+            <div class="room-enter"><div class="room-enter-line"></div>Vezi băuturile</div>
+          </div>
+        </div>
+        <div class="room-card reveal-up d2" onclick="enterRoom('Terasa', '#rezervari-section')">
+          <img src="https://drive.google.com/uc?export=view&id=1A-CdhbN1PsvzaEH8EbgjR2_XPlEZ8ewc" alt="Terasa NOD">
+          <div class="room-card-overlay"></div>
+          <div class="room-card-content">
+            <div class="room-number">03</div>
+            <div class="room-label">Ieși afară</div>
+            <div class="room-name">Terasa</div>
+            <div class="room-desc">Iahturi, Marea Neagră, apus de soare. Cel mai frumos decor pe care nu l-am construit noi.</div>
+            <div class="room-enter"><div class="room-enter-line"></div>Rezervă un loc</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY MARQUEE -->
+  <section id="gallery-section">
+    <div class="gallery-inner">
+      <div class="gallery-header">
+        <h2 class="gallery-title reveal-up">Atmosfera <em>NOD</em></h2>
+        <div class="gallery-subtitle reveal-up d1">Port Tomis · Constanța</div>
+      </div>
+    </div>
+    <div class="gallery-marquee">
+      <div class="gallery-track" id="track1">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1GbSYpTsy2uE3MrhYm53jrM7OQjKGifSu" alt="NOD">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1YbUubQIb8BlcwWvyMyN-ZjPeQpTSnuSb" alt="NOD">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1VKZOV73nIUZ5R3Gp4NnxWxLT7kJn8J_3" alt="NOD">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1EegbNT8AIJGxL2dVXfEL6lucAbvR3rl4" alt="NOD">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=13S9jF9Dt5sbnW0c5aDqCpn3kLMtcTCd8" alt="NOD">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1hSbinKHV1hUAEY69nMFN3v6lKfdkTGfT" alt="NOD">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1A-CdhbN1PsvzaEH8EbgjR2_XPlEZ8ewc" alt="NOD">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=18BYoZUI8qbGtVhckpfjRGgjWhs8B-G6o" alt="NOD">
+        <!-- duplicates for seamless loop -->
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1GbSYpTsy2uE3MrhYm53jrM7OQjKGifSu" alt="NOD">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1YbUubQIb8BlcwWvyMyN-ZjPeQpTSnuSb" alt="NOD">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1VKZOV73nIUZ5R3Gp4NnxWxLT7kJn8J_3" alt="NOD">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1EegbNT8AIJGxL2dVXfEL6lucAbvR3rl4" alt="NOD">
+      </div>
+    </div>
+    <div style="height:4px"></div>
+    <div class="gallery-marquee">
+      <div class="gallery-track reverse">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=18L0jTaJCTfFN488zrsNUCacH7NmeuXBH" alt="NOD">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1J37T7puUSXiaEQ0oNwW2eoQ18jUyGNiD" alt="NOD">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1sPuN9AAou_CsPojzcKHYLu64sZZy_gB-" alt="NOD">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1pBhzfRaHhSu6s0jEmdZEVzRLjk5CsPQY" alt="NOD">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1jzpu3Cjm8c1q334QVQMV1GOZz5IcKWLW" alt="NOD">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1-W14wkLFYVDawXcMyLAj8bnnDWFC2PPe" alt="NOD">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1BeSVP3p_l3O8B1jjN5PHw7idmPeUzqxp" alt="NOD">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1KwBR1ZZrYDlDi3U1BZxupnqsZFk_xJeZ" alt="NOD">
+        <!-- duplicates -->
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=18L0jTaJCTfFN488zrsNUCacH7NmeuXBH" alt="NOD">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1J37T7puUSXiaEQ0oNwW2eoQ18jUyGNiD" alt="NOD">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1sPuN9AAou_CsPojzcKHYLu64sZZy_gB-" alt="NOD">
+        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1pBhzfRaHhSu6s0jEmdZEVzRLjk5CsPQY" alt="NOD">
+      </div>
+    </div>
+  </section>
+
+  <!-- REZERVARI -->
+  <section id="rezervari-section">
+    <div class="rezervari-bg">
+      <img src="https://drive.google.com/uc?export=view&id=1G1FlQhQVu7k3481p4Z0GvMkoHh0wYouK" alt="Port Tomis">
+    </div>
+    <div class="rezervari-overlay"></div>
+    <div class="rezervari-content">
+      <div class="rezervari-left">
+        <div class="rez-label reveal-up">Rezervă o masă</div>
+        <h2 class="rez-title reveal-up d1">Asigură-ți locul<br>lângă <em>apă</em></h2>
+        <p class="rez-body reveal-up d2">Confirmarea vine prin SMS în câteva minute. Pentru grupuri mari sau ocazii speciale, suntem bucuroși să personalizăm experiența ta.</p>
+        <div class="rez-info reveal-up d3">
+          <div class="rez-info-item">
+            <div class="rez-info-icon">📍</div>
+            <div class="rez-info-text"><strong>Strada Lebedei, Constanța</strong>Port Tomis · Marina</div>
+          </div>
+          <div class="rez-info-item">
+            <div class="rez-info-icon">🕐</div>
+            <div class="rez-info-text"><strong>Program</strong>Luni–Duminică · 12:00 – 23:00</div>
+          </div>
+          <div class="rez-info-item">
+            <div class="rez-info-icon">📞</div>
+            <div class="rez-info-text"><strong>Telefon</strong>+40 XXX XXX XXX</div>
+          </div>
+        </div>
+      </div>
+      <div class="rezervari-form reveal-up d2">
+        <div class="form-card">
+          <form id="rezervare-form" onsubmit="submitRezervare(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <div class="form-lbl">Nume complet</div>
+                <input class="form-inp" type="text" name="nume" placeholder="Ion Popescu" required>
+              </div>
+              <div class="form-group">
+                <div class="form-lbl">Telefon</div>
+                <input class="form-inp" type="tel" name="telefon" placeholder="07XX XXX XXX" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <div class="form-lbl">Data</div>
+                <input class="form-inp" type="date" name="data" required>
+              </div>
+              <div class="form-group">
+                <div class="form-lbl">Ora</div>
+                <select class="form-inp" name="ora">
+                  <option value="">Selectează</option>
+                  <option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option>
+                  <option>14:00</option><option>14:30</option><option>15:00</option><option>18:00</option>
+                  <option>18:30</option><option>19:00</option><option>19:30</option><option>20:00</option>
+                  <option>20:30</option><option>21:00</option><option>21:30</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <div class="form-lbl">Persoane</div>
+                <select class="form-inp" name="persoane">
+                  <option>1-2 persoane</option><option>3-4 persoane</option>
+                  <option>5-6 persoane</option><option>7-8 persoane</option><option>Grup 8+</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <div class="form-lbl">Ocazie</div>
+                <select class="form-inp" name="ocazie">
+                  <option>Nimic special</option><option>Aniversare</option>
+                  <option>Zi de naștere</option><option>Business dinner</option><option>Altceva</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom:20px">
+              <div class="form-lbl">Mențiuni speciale</div>
+              <input class="form-inp" type="text" name="mentiuni" placeholder="Alergii, preferințe, loc la fereastră...">
+            </div>
+            <button type="submit" class="form-btn" id="form-btn">Confirmă rezervarea →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo-big">NOD</div>
+          <div class="footer-tagline">Restaurant în Portul Tomis, Constanța.<br>Unde apa întâlnește masa.</div>
+        </div>
+        <div>
+          <div class="ft-col-title">Navigație</div>
+          <a class="ft-link" href="#scene-story">Povestea noastră</a>
+          <a class="ft-link" href="menu.html">Meniu complet</a>
+          <a class="ft-link" href="#gallery-section">Galerie</a>
+          <a class="ft-link" href="#rezervari-section">Rezervări</a>
+        </div>
+        <div>
+          <div class="ft-col-title">Contact</div>
+          <a class="ft-link" href="#">Str. Lebedei, Constanța</a>
+          <a class="ft-link" href="#">Port Tomis · Marina</a>
+          <a class="ft-link" href="tel:+40000000000">+40 XXX XXX XXX</a>
+        </div>
+        <div>
+          <div class="ft-col-title">Social</div>
+          <a class="ft-link" href="#" target="_blank">Instagram</a>
+          <a class="ft-link" href="#" target="_blank">Facebook</a>
+          <a class="ft-link" href="#" target="_blank">TripAdvisor</a>
+          <a class="ft-link" href="#" target="_blank">Google Maps</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2024 NOD Restaurant · Toate drepturile rezervate</div>
+        <div class="footer-gold"></div>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- end main-site -->
+
+<script src="assets/main.js"></script>
+</body>
+</html>
