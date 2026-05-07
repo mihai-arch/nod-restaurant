@@ -1,37 +1,3 @@
-// ===== TOUCH DETECTION =====
-const isTouch = window.matchMedia('(hover:none),(pointer:coarse)').matches;
-
-// ===== CURSOR (desktop only) =====
-const cursor = document.getElementById('cursor');
-const follower = document.getElementById('cursor-follower');
-let mx = 0, my = 0, fx = 0, fy = 0;
-
-if (!isTouch && cursor && follower) {
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx + 'px';
-    cursor.style.top = my + 'px';
-  });
-
-  setInterval(() => {
-    fx += (mx - fx) * 0.12;
-    fy += (my - fy) * 0.12;
-    follower.style.left = fx + 'px';
-    follower.style.top = fy + 'px';
-  }, 16);
-
-  document.querySelectorAll('button, a, .room-card, input, select').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.transform = 'translate(-50%,-50%) scale(2)';
-      follower.style.transform = 'translate(-50%,-50%) scale(1.5)';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
-      follower.style.transform = 'translate(-50%,-50%) scale(1)';
-    });
-  });
-}
-
 // ===== HAMBURGER MENU =====
 const hamburger = document.getElementById('hamburger');
 const navMobile = document.getElementById('nav-mobile');
@@ -138,7 +104,7 @@ window.addEventListener('scroll', () => {
   if (bar) bar.style.width = (window.scrollY / winH * 100) + '%';
 
   // Hero parallax (only when intro is dismissed to avoid jank)
-  if (introDismissed) {
+  if (introDismissed && window.innerWidth > 900) {
     const heroBg = document.querySelector('.hero-video-bg');
     if (heroBg) heroBg.style.transform = `translateY(${window.scrollY * 0.28}px)`;
   }
