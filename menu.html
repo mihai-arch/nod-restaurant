@@ -86,6 +86,13 @@ body { background:var(--cream); font-family:'Jost',sans-serif; cursor:none; }
 .menu-footer-note a { color:var(--gold); text-decoration:none; }
 .allergen-note { max-width:800px; margin:20px auto 0; font-size:11px; color:rgba(255,255,255,0.2); line-height:1.7; }
 
+/* Touch device — restore normal cursor */
+@media(hover:none),(pointer:coarse){
+  body { cursor:auto; }
+  #cursor { display:none !important; }
+  button,a { cursor:pointer !important; }
+}
+
 /* RESPONSIVE */
 @media(max-width:768px){
   .menu-header { padding:40px 24px 28px; }
@@ -95,6 +102,15 @@ body { background:var(--cream); font-family:'Jost',sans-serif; cursor:none; }
   .section-title { font-size:32px; }
   .header-back { top:24px; left:24px; }
   .menu-footer { padding:36px 24px; }
+}
+@media(max-width:480px){
+  .menu-header { padding:32px 16px 24px; }
+  .header-logo { font-size:44px; }
+  .header-title { font-size:32px; }
+  .menu-nav-inner { padding:0 8px; }
+  .menu-tab { padding:14px 14px; font-size:8px; letter-spacing:2px; }
+  .menu-content { padding:0 16px 48px; }
+  .mi-name { font-size:17px; }
 }
 </style>
 </head>
@@ -426,9 +442,12 @@ body { background:var(--cream); font-family:'Jost',sans-serif; cursor:none; }
 </div>
 
 <script>
-// Cursor
+// Cursor (desktop only)
 const cursor = document.getElementById('cursor');
-document.addEventListener('mousemove', e => { cursor.style.left = e.clientX+'px'; cursor.style.top = e.clientY+'px'; });
+const isTouch = window.matchMedia('(hover:none),(pointer:coarse)').matches;
+if (!isTouch && cursor) {
+  document.addEventListener('mousemove', e => { cursor.style.left = e.clientX+'px'; cursor.style.top = e.clientY+'px'; });
+}
 
 // Tab switching
 function switchSection(id, btn) {

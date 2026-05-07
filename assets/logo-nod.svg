@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" fill="none">
+  <!-- Outer oval border -->
+  <ellipse cx="150" cy="100" rx="145" ry="95" stroke="#C9A96E" stroke-width="0.8" opacity="0.55"/>
+  <ellipse cx="150" cy="100" rx="137" ry="87" stroke="#C9A96E" stroke-width="0.3" opacity="0.22"/>
+  <!-- Corner ornaments -->
+  <line x1="20" y1="100" x2="35" y2="100" stroke="#C9A96E" stroke-width="0.6" opacity="0.4"/>
+  <line x1="265" y1="100" x2="280" y2="100" stroke="#C9A96E" stroke-width="0.6" opacity="0.4"/>
+  <!-- Port Tomis top text -->
+  <text x="150" y="38" font-family="'Jost',Helvetica,sans-serif" font-size="7.5" font-weight="200" fill="#C9A96E" text-anchor="middle" letter-spacing="5" opacity="0.7">PORT TOMIS · CONSTANȚA</text>
+  <!-- Main NOD text -->
+  <text x="150" y="118" font-family="'Cormorant Garamond',Georgia,serif" font-size="80" font-weight="300" fill="white" text-anchor="middle" letter-spacing="14">N<tspan fill="#C9A96E" font-style="italic">O</tspan>D</text>
+  <!-- Gold divider line -->
+  <line x1="92" y1="130" x2="208" y2="130" stroke="#C9A96E" stroke-width="0.7" opacity="0.45"/>
+  <!-- RESTAURANT text -->
+  <text x="150" y="147" font-family="'Jost',Helvetica,sans-serif" font-size="8" font-weight="200" fill="#C9A96E" text-anchor="middle" letter-spacing="7">RESTAURANT</text>
+  <!-- Wave decoration -->
+  <path d="M 60 168 Q 78 160 96 168 Q 114 176 132 168 Q 150 160 168 168 Q 186 176 204 168 Q 218 162 228 168" stroke="#C9A96E" stroke-width="0.7" fill="none" opacity="0.28"/>
+  <!-- Dot ornaments -->
+  <circle cx="68" cy="100" r="1.5" fill="#C9A96E" opacity="0.3"/>
+  <circle cx="232" cy="100" r="1.5" fill="#C9A96E" opacity="0.3"/>
+</svg>

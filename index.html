@@ -23,7 +23,12 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="nav-logo">N<span>O</span>D</div>
+  <a href="/" class="nav-logo" aria-label="NOD Restaurant">
+    <svg class="nav-logo-svg" viewBox="0 0 220 52" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <text x="110" y="37" font-family="'Cormorant Garamond',Georgia,serif" font-size="34" font-weight="300" fill="white" text-anchor="middle" letter-spacing="12">N<tspan fill="#C9A96E" font-style="italic">O</tspan>D</text>
+      <text x="110" y="50" font-family="'Jost',Helvetica,sans-serif" font-size="6" font-weight="200" fill="rgba(201,169,110,0.65)" text-anchor="middle" letter-spacing="6">RESTAURANT</text>
+    </svg>
+  </a>
   <div class="nav-links">
     <a href="#scene-story">Povestea</a>
     <a href="#rooms-nav">Meniu</a>
@@ -31,20 +36,38 @@
     <a href="#rezervari-section">Rezervări</a>
   </div>
   <button class="nav-cta" onclick="document.getElementById('rezervari-section').scrollIntoView({behavior:'smooth'})">Rezervă</button>
+  <button class="nav-hamburger" id="hamburger" aria-label="Deschide meniu" aria-expanded="false">
+    <span class="h-line"></span>
+    <span class="h-line"></span>
+    <span class="h-line"></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU OVERLAY -->
+<div class="nav-mobile-menu" id="nav-mobile" aria-hidden="true">
+  <a href="#scene-story" class="nav-mobile-link">Povestea</a>
+  <a href="#rooms-nav" class="nav-mobile-link">Meniu</a>
+  <a href="#gallery-section" class="nav-mobile-link">Galerie</a>
+  <a href="#rezervari-section" class="nav-mobile-link">Rezervări</a>
+  <button class="nav-mobile-cta" onclick="document.getElementById('rezervari-section').scrollIntoView({behavior:'smooth'}); closeMobileMenu()">Rezervă o Masă</button>
+</div>
 
 <!-- INTRO OVERLAY -->
 <div id="intro">
   <div class="intro-particles" id="particles"></div>
   <div class="intro-card" id="intro-card">
-    <img class="intro-card-img"
-      src="https://drive.google.com/uc?export=view&id=1GbSYpTsy2uE3MrhYm53jrM7OQjKGifSu"
-      alt="NOD Restaurant">
+    <div class="intro-card-img nod-grad-warm"></div>
     <div class="intro-card-overlay"></div>
     <div class="intro-card-content">
-      <div class="intro-eyebrow">Port Tomis · Constanța</div>
-      <div class="intro-title">N<em>O</em>D</div>
-      <div class="intro-sub">Restaurant</div>
+      <svg class="intro-nod-badge" viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" fill="none" aria-label="NOD Restaurant">
+        <ellipse cx="140" cy="100" rx="134" ry="94" stroke="#C9A96E" stroke-width="0.8" opacity="0.5"/>
+        <ellipse cx="140" cy="100" rx="126" ry="86" stroke="#C9A96E" stroke-width="0.3" opacity="0.2"/>
+        <text x="140" y="45" font-family="'Jost',Helvetica,sans-serif" font-size="7" font-weight="200" fill="#C9A96E" text-anchor="middle" letter-spacing="5" opacity="0.65">PORT TOMIS · CONSTANȚA</text>
+        <text x="140" y="118" font-family="'Cormorant Garamond',Georgia,serif" font-size="74" font-weight="300" fill="white" text-anchor="middle" letter-spacing="12">N<tspan fill="#C9A96E" font-style="italic">O</tspan>D</text>
+        <line x1="88" y1="130" x2="192" y2="130" stroke="#C9A96E" stroke-width="0.6" opacity="0.45"/>
+        <text x="140" y="148" font-family="'Jost',Helvetica,sans-serif" font-size="7.5" font-weight="200" fill="#C9A96E" text-anchor="middle" letter-spacing="7">RESTAURANT</text>
+        <path d="M 50 168 Q 68 160 86 168 Q 104 176 122 168 Q 140 160 158 168 Q 176 176 194 168 Q 208 163 218 168" stroke="#C9A96E" stroke-width="0.7" fill="none" opacity="0.28"/>
+      </svg>
       <div class="intro-line"></div>
       <div class="intro-cta">Scroll pentru a intra ↓</div>
     </div>
@@ -57,14 +80,18 @@
   <!-- HERO -->
   <section id="hero">
     <div class="hero-video-bg">
-      <video autoplay muted loop playsinline id="hero-video">
-        <source src="https://drive.google.com/uc?export=view&id=1dJA--pAthM_zGJbpbNdJjxIkpZzBDvBt" type="video/mp4">
-      </video>
-      <img src="https://drive.google.com/uc?export=view&id=1-W14wkLFYVDawXcMyLAj8bnnDWFC2PPe"
-           alt="NOD Restaurant" id="hero-fallback" style="display:none">
+      <div class="hero-cinematic-bg"></div>
+      <div class="hero-light-shimmer"></div>
     </div>
     <div class="hero-parallax-overlay"></div>
     <div class="hero-grain"></div>
+    <div class="hero-logo-watermark" aria-hidden="true">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="94" stroke="#C9A96E" stroke-width="0.6" opacity="0.1"/>
+        <circle cx="100" cy="100" r="87" stroke="#C9A96E" stroke-width="0.3" opacity="0.05"/>
+        <text x="100" y="115" font-family="'Cormorant Garamond',Georgia,serif" font-size="60" font-weight="300" fill="rgba(201,169,110,0.07)" text-anchor="middle" letter-spacing="8">NOD</text>
+      </svg>
+    </div>
     <div class="hero-content">
       <div class="hero-tagline" id="h-tagline">Unde portul devine masă</div>
       <div class="hero-name" id="h-name">N<span class="o">O</span>D</div>
@@ -84,7 +111,7 @@
   <!-- STORY SCENE -->
   <section class="scene" id="scene-story">
     <div class="scene-bg">
-      <img src="https://drive.google.com/uc?export=view&id=1hSbinKHV1hUAEY69nMFN3v6lKfdkTGfT" alt="Interior NOD">
+      <div class="nod-grad-scene"></div>
     </div>
     <div class="scene-fade-right"></div>
     <div class="scene-content">
@@ -98,12 +125,8 @@
         </div>
       </div>
       <div class="story-visual-block">
-        <img class="story-img-main reveal-up d2"
-          src="https://drive.google.com/uc?export=view&id=18BYoZUI8qbGtVhckpfjRGgjWhs8B-G6o"
-          alt="Atmosfera NOD">
-        <img class="story-img-accent reveal-up d3"
-          src="https://drive.google.com/uc?export=view&id=1250VTd_d-yEQU92yxd5zyVaHQ08oZn65"
-          alt="Detaliu NOD">
+        <div class="story-img-main nod-grad-2 reveal-up d2"></div>
+        <div class="story-img-accent nod-grad-5 reveal-up d3"></div>
       </div>
     </div>
   </section>
@@ -120,7 +143,7 @@
       </div>
       <div class="rooms-grid">
         <div class="room-card reveal-up" onclick="enterRoom('Bucătăria', 'menu.html')">
-          <img src="https://drive.google.com/uc?export=view&id=1nr7T4lsLp36hT4rLTiZ-Ax5QIS6Ieq62" alt="Bucătăria NOD">
+          <div class="room-card-bg nod-grad-room1"></div>
           <div class="room-card-overlay"></div>
           <div class="room-card-content">
             <div class="room-number">01</div>
@@ -131,7 +154,7 @@
           </div>
         </div>
         <div class="room-card reveal-up d1" onclick="enterRoom('Barul', 'menu.html#bar')">
-          <img src="https://drive.google.com/uc?export=view&id=1BeSVP3p_l3O8B1jjN5PHw7idmPeUzqxp" alt="Barul NOD">
+          <div class="room-card-bg nod-grad-room2"></div>
           <div class="room-card-overlay"></div>
           <div class="room-card-content">
             <div class="room-number">02</div>
@@ -142,7 +165,7 @@
           </div>
         </div>
         <div class="room-card reveal-up d2" onclick="enterRoom('Terasa', '#rezervari-section')">
-          <img src="https://drive.google.com/uc?export=view&id=1A-CdhbN1PsvzaEH8EbgjR2_XPlEZ8ewc" alt="Terasa NOD">
+          <div class="room-card-bg nod-grad-room3"></div>
           <div class="room-card-overlay"></div>
           <div class="room-card-content">
             <div class="room-number">03</div>
@@ -166,37 +189,37 @@
     </div>
     <div class="gallery-marquee">
       <div class="gallery-track" id="track1">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1GbSYpTsy2uE3MrhYm53jrM7OQjKGifSu" alt="NOD">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1YbUubQIb8BlcwWvyMyN-ZjPeQpTSnuSb" alt="NOD">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1VKZOV73nIUZ5R3Gp4NnxWxLT7kJn8J_3" alt="NOD">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1EegbNT8AIJGxL2dVXfEL6lucAbvR3rl4" alt="NOD">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=13S9jF9Dt5sbnW0c5aDqCpn3kLMtcTCd8" alt="NOD">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1hSbinKHV1hUAEY69nMFN3v6lKfdkTGfT" alt="NOD">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1A-CdhbN1PsvzaEH8EbgjR2_XPlEZ8ewc" alt="NOD">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=18BYoZUI8qbGtVhckpfjRGgjWhs8B-G6o" alt="NOD">
+        <div class="gallery-img nod-gv1"></div>
+        <div class="gallery-img nod-gv2"></div>
+        <div class="gallery-img nod-gv3"></div>
+        <div class="gallery-img nod-gv4"></div>
+        <div class="gallery-img nod-gv5"></div>
+        <div class="gallery-img nod-gv6"></div>
+        <div class="gallery-img nod-gv1"></div>
+        <div class="gallery-img nod-gv3"></div>
         <!-- duplicates for seamless loop -->
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1GbSYpTsy2uE3MrhYm53jrM7OQjKGifSu" alt="NOD">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1YbUubQIb8BlcwWvyMyN-ZjPeQpTSnuSb" alt="NOD">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1VKZOV73nIUZ5R3Gp4NnxWxLT7kJn8J_3" alt="NOD">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1EegbNT8AIJGxL2dVXfEL6lucAbvR3rl4" alt="NOD">
+        <div class="gallery-img nod-gv2"></div>
+        <div class="gallery-img nod-gv4"></div>
+        <div class="gallery-img nod-gv5"></div>
+        <div class="gallery-img nod-gv6"></div>
       </div>
     </div>
     <div style="height:4px"></div>
     <div class="gallery-marquee">
       <div class="gallery-track reverse">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=18L0jTaJCTfFN488zrsNUCacH7NmeuXBH" alt="NOD">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1J37T7puUSXiaEQ0oNwW2eoQ18jUyGNiD" alt="NOD">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1sPuN9AAou_CsPojzcKHYLu64sZZy_gB-" alt="NOD">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1pBhzfRaHhSu6s0jEmdZEVzRLjk5CsPQY" alt="NOD">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1jzpu3Cjm8c1q334QVQMV1GOZz5IcKWLW" alt="NOD">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1-W14wkLFYVDawXcMyLAj8bnnDWFC2PPe" alt="NOD">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1BeSVP3p_l3O8B1jjN5PHw7idmPeUzqxp" alt="NOD">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1KwBR1ZZrYDlDi3U1BZxupnqsZFk_xJeZ" alt="NOD">
+        <div class="gallery-img nod-gv4"></div>
+        <div class="gallery-img nod-gv6"></div>
+        <div class="gallery-img nod-gv2"></div>
+        <div class="gallery-img nod-gv5"></div>
+        <div class="gallery-img nod-gv1"></div>
+        <div class="gallery-img nod-gv3"></div>
+        <div class="gallery-img nod-gv6"></div>
+        <div class="gallery-img nod-gv4"></div>
         <!-- duplicates -->
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=18L0jTaJCTfFN488zrsNUCacH7NmeuXBH" alt="NOD">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1J37T7puUSXiaEQ0oNwW2eoQ18jUyGNiD" alt="NOD">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1sPuN9AAou_CsPojzcKHYLu64sZZy_gB-" alt="NOD">
-        <img class="gallery-img" src="https://drive.google.com/uc?export=view&id=1pBhzfRaHhSu6s0jEmdZEVzRLjk5CsPQY" alt="NOD">
+        <div class="gallery-img nod-gv2"></div>
+        <div class="gallery-img nod-gv5"></div>
+        <div class="gallery-img nod-gv1"></div>
+        <div class="gallery-img nod-gv3"></div>
       </div>
     </div>
   </section>
@@ -204,7 +227,7 @@
   <!-- REZERVARI -->
   <section id="rezervari-section">
     <div class="rezervari-bg">
-      <img src="https://drive.google.com/uc?export=view&id=1G1FlQhQVu7k3481p4Z0GvMkoHh0wYouK" alt="Port Tomis">
+      <div class="nod-grad-rezervari"></div>
     </div>
     <div class="rezervari-overlay"></div>
     <div class="rezervari-content">
@@ -287,8 +310,13 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-top">
-        <div>
-          <div class="footer-logo-big">NOD</div>
+        <div class="footer-brand">
+          <svg class="footer-nod-svg" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" fill="none" aria-label="NOD Restaurant">
+            <ellipse cx="150" cy="100" rx="145" ry="95" stroke="#C9A96E" stroke-width="0.7" opacity="0.15"/>
+            <text x="150" y="118" font-family="'Cormorant Garamond',Georgia,serif" font-size="80" font-weight="300" fill="rgba(255,255,255,0.06)" text-anchor="middle" letter-spacing="14">N<tspan fill="rgba(201,169,110,0.1)" font-style="italic">O</tspan>D</text>
+            <line x1="92" y1="130" x2="208" y2="130" stroke="#C9A96E" stroke-width="0.5" opacity="0.18"/>
+            <text x="150" y="147" font-family="'Jost',Helvetica,sans-serif" font-size="8" font-weight="200" fill="rgba(201,169,110,0.22)" text-anchor="middle" letter-spacing="7">RESTAURANT</text>
+          </svg>
           <div class="footer-tagline">Restaurant în Portul Tomis, Constanța.<br>Unde apa întâlnește masa.</div>
         </div>
         <div>
